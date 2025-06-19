@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - 动态表情识别平台</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-smile"></i> 表情识别平台
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">首页</a>
+                <a class="nav-link" href="/upload">视频上传</a>
+                <a class="nav-link" href="/realtime">实时识别</a>
+                <a class="nav-link" href="/results">结果查看</a>
+                <a class="nav-link active" href="/about">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">
+                    <i class="fas fa-info-circle"></i> 关于我们
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>动态表情识别平台</h2>
+                        <p class="lead">基于MICACL模型的先进动态表情识别系统</p>
+                        
+                        <hr>
+                        
+                        <h3><i class="fas fa-bullseye"></i> 平台简介</h3>
+                        <p>
+                            动态表情识别平台是一个基于深度学习的表情分析系统，采用最新的MICACL（Multi-Instance Contrastive Active Learning）
+                            模型架构，能够准确识别视频中的面部表情变化。平台支持实时识别和批量处理，为研究人员和开发者提供
+                            便捷的表情分析工具。
+                        </p>
+
+                        <h3><i class="fas fa-star"></i> 主要特色</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success"></i> <strong>七种表情识别</strong><br>
+                                        快乐、悲伤、愤怒、惊讶、恐惧、厌恶、中性</li>
+                                    <li><i class="fas fa-check text-success"></i> <strong>实时识别</strong><br>
+                                        支持摄像头实时表情分析</li>
+                                    <li><i class="fas fa-check text-success"></i> <strong>视频上传</strong><br>
+                                        支持多种视频格式批量处理</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success"></i> <strong>高精度模型</strong><br>
+                                        基于MICACL架构的先进算法</li>
+                                    <li><i class="fas fa-check text-success"></i> <strong>结果可视化</strong><br>
+                                        直观的概率分布图表展示</li>
+                                    <li><i class="fas fa-check text-success"></i> <strong>API接口</strong><br>
+                                        RESTful API支持第三方集成</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-cogs"></i> 技术架构</h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-brain fa-2x text-primary mb-2"></i>
+                                        <h5>深度学习</h5>
+                                        <p class="small">MICACL模型架构<br>PyTorch框架</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-server fa-2x text-success mb-2"></i>
+                                        <h5>后端服务</h5>
+                                        <p class="small">FastAPI框架<br>异步处理</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card bg-light">
+                                    <div class="card-body text-center">
+                                        <i class="fas fa-desktop fa-2x text-info mb-2"></i>
+                                        <h5>前端界面</h5>
+                                        <p class="small">Bootstrap UI<br>WebSocket实时通信</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-chart-line"></i> 模型性能</h3>
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <div class="display-4 text-primary">69%</div>
+                                <small>平均准确率</small>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="display-4 text-success">16</div>
+                                <small>帧序列长度</small>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="display-4 text-info">7</div>
+                                <small>表情类别</small>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="display-4 text-warning">30fps</div>
+                                <small>实时处理速度</small>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-book"></i> 使用说明</h3>
+                        <div class="accordion" id="usageAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        视频上传识别
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#usageAccordion">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li>点击"视频上传"页面</li>
+                                            <li>选择要分析的视频文件（支持MP4、AVI、MOV等格式）</li>
+                                            <li>上传后系统自动进行表情识别</li>
+                                            <li>在"结果查看"页面查看识别结果</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        实时识别
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#usageAccordion">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li>进入"实时识别"页面</li>
+                                            <li>允许浏览器访问摄像头</li>
+                                            <li>面对摄像头，系统将实时显示表情识别结果</li>
+                                            <li>查看实时的表情类别和置信度</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        API使用
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#usageAccordion">
+                                    <div class="accordion-body">
+                                        <p>访问 <a href="/docs" target="_blank">/docs</a> 查看完整的API文档。主要接口包括：</p>
+                                        <ul>
+                                            <li><code>POST /api/upload</code> - 上传视频进行识别</li>
+                                            <li><code>GET /api/result/{task_id}</code> - 获取识别结果</li>
+                                            <li><code>WebSocket /api/realtime</code> - 实时识别接口</li>
+                                            <li><code>GET /api/model/info</code> - 获取模型信息</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-envelope"></i> 联系我们</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><i class="fas fa-university"></i> <strong>研发团队：</strong>hfut</p>
+                                <p><i class="fas fa-code"></i> <strong>技术支持：</strong>hfut</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><i class="fas fa-globe"></i> <strong>项目地址：</strong><a href="#" target="_blank">GitHub仓库</a></p>
+                                <p><i class="fas fa-file-alt"></i> <strong>文档：</strong><a href="/docs" target="_blank">API文档</a></p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info">
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>提示：</strong>本平台仅供学术研究和技术交流使用，请遵守相关法律法规和伦理规范。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">
+                © 2024 动态表情识别平台. 基于M3D模型架构.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+</body>
+</html> 

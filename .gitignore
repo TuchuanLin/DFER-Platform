@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyTorch
+*.pth
+*.pt
+*.pkl
+
+# Model files (exclude large model files)
+models/*.pth
+models/*.pt
+models/*.pkl
+checkpoints/
+!models/.gitkeep
+
+# Data directories
+data/uploads/*
+data/results/*
+data/temp/*
+!data/uploads/.gitkeep
+!data/results/.gitkeep
+
+# Logs
+logs/
+*.log
+*.out
+
+# Environment variables
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Docker
+.dockerignore
+
+# GPU cache
+.nv/
+
+# Pytest
+.pytest_cache/
+.coverage
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json 

@@ -1,0 +1,62 @@
+<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  
+  <!-- 快乐表情 -->
+  <g transform="translate(60, 50)">
+    <circle cx="40" cy="40" r="35" fill="#ffd700" stroke="#ffb800" stroke-width="2"/>
+    <circle cx="30" cy="30" r="3" fill="#000"/>
+    <circle cx="50" cy="30" r="3" fill="#000"/>
+    <path d="M 25 50 Q 40 60 55 50" stroke="#000" stroke-width="2" fill="none"/>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">快乐</text>
+  </g>
+  
+  <!-- 悲伤表情 -->
+  <g transform="translate(160, 50)">
+    <circle cx="40" cy="40" r="35" fill="#87ceeb" stroke="#5f9ea0" stroke-width="2"/>
+    <circle cx="30" cy="30" r="3" fill="#000"/>
+    <circle cx="50" cy="30" r="3" fill="#000"/>
+    <path d="M 25 55 Q 40 45 55 55" stroke="#000" stroke-width="2" fill="none"/>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">悲伤</text>
+  </g>
+  
+  <!-- 愤怒表情 -->
+  <g transform="translate(260, 50)">
+    <circle cx="40" cy="40" r="35" fill="#ff6b6b" stroke="#ff4757" stroke-width="2"/>
+    <circle cx="30" cy="30" r="3" fill="#000"/>
+    <circle cx="50" cy="30" r="3" fill="#000"/>
+    <path d="M 25 55 Q 40 65 55 55" stroke="#000" stroke-width="2" fill="none"/>
+    <line x1="20" y1="20" x2="35" y2="25" stroke="#000" stroke-width="2"/>
+    <line x1="45" y1="25" x2="60" y2="20" stroke="#000" stroke-width="2"/>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">愤怒</text>
+  </g>
+  
+  <!-- 惊讶表情 -->
+  <g transform="translate(60, 150)">
+    <circle cx="40" cy="40" r="35" fill="#ffeaa7" stroke="#fdcb6e" stroke-width="2"/>
+    <circle cx="30" cy="30" r="4" fill="#000"/>
+    <circle cx="50" cy="30" r="4" fill="#000"/>
+    <ellipse cx="40" cy="50" rx="8" ry="12" fill="#000"/>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">惊讶</text>
+  </g>
+  
+  <!-- 恐惧表情 -->
+  <g transform="translate(160, 150)">
+    <circle cx="40" cy="40" r="35" fill="#dda0dd" stroke="#ba55d3" stroke-width="2"/>
+    <circle cx="30" cy="30" r="3" fill="#000"/>
+    <circle cx="50" cy="30" r="3" fill="#000"/>
+    <ellipse cx="40" cy="50" rx="6" ry="8" fill="#000"/>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">恐惧</text>
+  </g>
+  
+  <!-- 厌恶表情 -->
+  <g transform="translate(260, 150)">
+    <circle cx="40" cy="40" r="35" fill="#fab1a0" stroke="#e17055" stroke-width="2"/>
+    <circle cx="30" cy="30" r="3" fill="#000"/>
+    <circle cx="50" cy="30" r="3" fill="#000"/>
+    <path d="M 30 50 Q 35 45 40 50 Q 45 45 50 50" stroke="#000" stroke-width="2" fill="none"/>
+    <text x="40" y="85" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">厌恶</text>
+  </g>
+  
+  <text x="200" y="250" text-anchor="middle" font-family="Arial" font-size="16" fill="#495057" font-weight="bold">M3D动态表情识别系统</text>
+  <text x="200" y="270" text-anchor="middle" font-family="Arial" font-size="12" fill="#6c757d">支持7种基本表情的实时识别</text>
+</svg> 

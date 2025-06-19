@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="face-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffeaa7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fab1a0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="neural-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b894;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00cec9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="url(#bg-gradient)"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="80" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="36" font-weight="bold">MICACL</text>
+  <text x="400" y="110" text-anchor="middle" fill="#ddd" font-family="Arial, sans-serif" font-size="18">Multi-Instance Contrastive Active Learning</text>
+  
+  <!-- 主要人脸 -->
+  <g transform="translate(350, 200)">
+    <!-- 头部轮廓 -->
+    <ellipse cx="50" cy="40" rx="45" ry="55" fill="url(#face-gradient)" stroke="#e17055" stroke-width="2"/>
+    
+    <!-- 眼睛 -->
+    <ellipse cx="35" cy="25" rx="6" ry="8" fill="#2d3436"/>
+    <ellipse cx="65" cy="25" rx="6" ry="8" fill="#2d3436"/>
+    <ellipse cx="37" cy="23" rx="2" ry="3" fill="white"/>
+    <ellipse cx="67" cy="23" rx="2" ry="3" fill="white"/>
+    
+    <!-- 鼻子 -->
+    <path d="M 50 35 L 47 45 L 53 45 Z" fill="#e17055"/>
+    
+    <!-- 嘴巴 (微笑) -->
+    <path d="M 35 55 Q 50 65 65 55" stroke="#2d3436" stroke-width="3" fill="none" stroke-linecap="round"/>
+    
+    <!-- 情感识别光圈 -->
+    <circle cx="50" cy="40" r="70" fill="none" stroke="#00cec9" stroke-width="2" opacity="0.6" stroke-dasharray="10,5">
+      <animateTransform attributeName="transform" type="rotate" from="0 50 40" to="360 50 40" dur="8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- 神经网络连接 -->
+  <g stroke="url(#neural-gradient)" stroke-width="2" fill="none" opacity="0.8">
+    <!-- 左侧神经元 -->
+    <circle cx="150" cy="180" r="8" fill="url(#neural-gradient)" filter="url(#glow)"/>
+    <circle cx="120" cy="220" r="6" fill="url(#neural-gradient)"/>
+    <circle cx="180" cy="260" r="7" fill="url(#neural-gradient)"/>
+    <circle cx="140" cy="300" r="6" fill="url(#neural-gradient)"/>
+    
+    <!-- 右侧神经元 -->
+    <circle cx="650" cy="180" r="8" fill="url(#neural-gradient)" filter="url(#glow)"/>
+    <circle cx="680" cy="220" r="6" fill="url(#neural-gradient)"/>
+    <circle cx="620" cy="260" r="7" fill="url(#neural-gradient)"/>
+    <circle cx="660" cy="300" r="6" fill="url(#neural-gradient)"/>
+    
+    <!-- 连接线 -->
+    <line x1="150" y1="180" x2="350" y2="240"/>
+    <line x1="120" y1="220" x2="350" y2="240"/>
+    <line x1="180" y1="260" x2="400" y2="240"/>
+    <line x1="140" y1="300" x2="350" y2="240"/>
+    
+    <line x1="450" y1="240" x2="650" y2="180"/>
+    <line x1="450" y1="240" x2="680" y2="220"/>
+    <line x1="400" y1="240" x2="620" y2="260"/>
+    <line x1="450" y1="240" x2="660" y2="300"/>
+  </g>
+  
+  <!-- 表情类别标签 -->
+  <g font-family="Arial, sans-serif" font-size="14" fill="white">
+    <!-- 左侧标签 -->
+    <g transform="translate(50, 400)">
+      <rect width="120" height="25" rx="12" fill="rgba(255,255,255,0.2)"/>
+      <text x="60" y="18" text-anchor="middle">😊 Happy</text>
+    </g>
+    <g transform="translate(50, 435)">
+      <rect width="120" height="25" rx="12" fill="rgba(255,255,255,0.2)"/>
+      <text x="60" y="18" text-anchor="middle">😢 Sad</text>
+    </g>
+    <g transform="translate(50, 470)">
+      <rect width="120" height="25" rx="12" fill="rgba(255,255,255,0.2)"/>
+      <text x="60" y="18" text-anchor="middle">😠 Angry</text>
+    </g>
+    
+    <!-- 右侧标签 -->
+    <g transform="translate(630, 400)">
+      <rect width="120" height="25" rx="12" fill="rgba(255,255,255,0.2)"/>
+      <text x="60" y="18" text-anchor="middle">😲 Surprise</text>
+    </g>
+    <g transform="translate(630, 435)">
+      <rect width="120" height="25" rx="12" fill="rgba(255,255,255,0.2)"/>
+      <text x="60" y="18" text-anchor="middle">😨 Fear</text>
+    </g>
+    <g transform="translate(630, 470)">
+      <rect width="120" height="25" rx="12" fill="rgba(255,255,255,0.2)"/>
+      <text x="60" y="18" text-anchor="middle">🤢 Disgust</text>
+    </g>
+  </g>
+  
+  <!-- 底部技术标识 -->
+  <g transform="translate(300, 520)">
+    <rect width="200" height="40" rx="20" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)"/>
+    <text x="100" y="18" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12">动态表情识别</text>
+    <text x="100" y="32" text-anchor="middle" fill="#ddd" font-family="Arial, sans-serif" font-size="10">Deep Learning Powered</text>
+  </g>
+  
+  <!-- 动态效果 - 数据流 -->
+  <g>
+    <circle cx="200" cy="300" r="3" fill="#00cec9" opacity="0.8">
+      <animate attributeName="cx" values="200;400;600" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="180" cy="320" r="2" fill="#fd79a8" opacity="0.6">
+      <animate attributeName="cx" values="180;400;620" dur="3.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="220" cy="280" r="2.5" fill="#fdcb6e" opacity="0.7">
+      <animate attributeName="cx" values="220;400;580" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg> 

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结果查看 - 动态表情识别平台</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-smile"></i> 表情识别平台
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">首页</a>
+                <a class="nav-link" href="/upload">视频上传</a>
+                <a class="nav-link" href="/realtime">实时识别</a>
+                <a class="nav-link active" href="/results">结果查看</a>
+                <a class="nav-link" href="/about">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-4">
+                    <i class="fas fa-chart-bar"></i> 识别结果查看
+                </h1>
+                <p class="text-center text-muted">查看和管理所有表情识别任务的结果</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-filter"></i> 筛选条件</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">状态</label>
+                            <select class="form-select" id="statusFilter">
+                                <option value="">全部</option>
+                                <option value="completed">已完成</option>
+                                <option value="processing">处理中</option>
+                                <option value="failed">失败</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">日期范围</label>
+                            <input type="date" class="form-control mb-2" id="startDate">
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="loadTasks()">
+                            <i class="fas fa-search"></i> 搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5><i class="fas fa-list"></i> 任务列表</h5>
+                        <button class="btn btn-sm btn-outline-primary" onclick="loadTasks()">
+                            <i class="fas fa-sync-alt"></i> 刷新
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="tasksContainer">
+                            <div class="text-center">
+                                <div class="spinner-border" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2">正在加载任务列表...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果详情模态框 -->
+        <div class="modal fade" id="resultModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">识别结果详情</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" id="resultModalBody">
+                        <!-- 动态内容 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script>
+        let allTasks = [];
+
+        // 页面加载时获取任务列表
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTasks();
+        });
+
+        async function loadTasks() {
+            try {
+                const response = await fetch('/api/tasks');
+                const data = await response.json();
+                allTasks = data.tasks || [];
+                displayTasks(allTasks);
+            } catch (error) {
+                console.error('加载任务失败:', error);
+                document.getElementById('tasksContainer').innerHTML = `
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle"></i> 加载任务失败: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        function displayTasks(tasks) {
+            const container = document.getElementById('tasksContainer');
+            
+            if (tasks.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center text-muted">
+                        <i class="fas fa-inbox fa-3x mb-3"></i>
+                        <p>暂无任务记录</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tasksHtml = tasks.map(task => {
+                const statusClass = getStatusClass(task.status);
+                const statusIcon = getStatusIcon(task.status);
+                const createdAt = new Date(task.created_at).toLocaleString('zh-CN');
+                
+                return `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h6 class="mb-1">${task.filename || '未知文件'}</h6>
+                                    <small class="text-muted">
+                                        <i class="fas fa-clock"></i> ${createdAt}
+                                    </small>
+                                </div>
+                                <div class="col-md-3">
+                                    <span class="badge ${statusClass}">
+                                        <i class="fas ${statusIcon}"></i> ${getStatusText(task.status)}
+                                    </span>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <button class="btn btn-sm btn-outline-primary" onclick="viewResult('${task.task_id}')">
+                                        <i class="fas fa-eye"></i> 查看
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="deleteTask('${task.task_id}')">
+                                        <i class="fas fa-trash"></i> 删除
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = tasksHtml;
+        }
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'completed': return 'bg-success';
+                case 'processing': return 'bg-warning';
+                case 'failed': return 'bg-danger';
+                default: return 'bg-secondary';
+            }
+        }
+
+        function getStatusIcon(status) {
+            switch (status) {
+                case 'completed': return 'fa-check';
+                case 'processing': return 'fa-spinner fa-spin';
+                case 'failed': return 'fa-times';
+                default: return 'fa-question';
+            }
+        }
+
+        function getStatusText(status) {
+            switch (status) {
+                case 'completed': return '已完成';
+                case 'processing': return '处理中';
+                case 'failed': return '失败';
+                default: return '未知';
+            }
+        }
+
+        async function viewResult(taskId) {
+            try {
+                const response = await fetch(`/api/result/${taskId}`);
+                const task = await response.json();
+                
+                let modalContent = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>基本信息</h6>
+                            <table class="table table-sm">
+                                <tr><td>任务ID:</td><td>${task.task_id}</td></tr>
+                                <tr><td>文件名:</td><td>${task.filename || '未知'}</td></tr>
+                                <tr><td>状态:</td><td><span class="badge ${getStatusClass(task.status)}">${getStatusText(task.status)}</span></td></tr>
+                                <tr><td>创建时间:</td><td>${new Date(task.created_at).toLocaleString('zh-CN')}</td></tr>
+                            </table>
+                        </div>
+                `;
+
+                if (task.result && task.status === 'completed') {
+                    modalContent += `
+                        <div class="col-md-6">
+                            <h6>识别结果</h6>
+                            <div class="alert alert-info">
+                                <h5><i class="fas fa-smile"></i> ${task.result.predicted_label}</h5>
+                                <p>置信度: ${(task.result.confidence * 100).toFixed(2)}%</p>
+                            </div>
+                            <canvas id="probabilityChart" width="400" height="200"></canvas>
+                        </div>
+                    `;
+                } else if (task.result && task.status === 'failed') {
+                    modalContent += `
+                        <div class="col-md-6">
+                            <h6>错误信息</h6>
+                            <div class="alert alert-danger">
+                                <strong>错误类型:</strong> ${task.result.error_type || '未知错误'}<br>
+                                <strong>错误详情:</strong> ${task.result.error || '无详情'}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                modalContent += '</div>';
+                document.getElementById('resultModalBody').innerHTML = modalContent;
+                
+                // 如果有概率数据，绘制图表
+                if (task.result && task.result.probabilities) {
+                    setTimeout(() => {
+                        drawProbabilityChart(task.result.probabilities);
+                    }, 100);
+                }
+                
+                new bootstrap.Modal(document.getElementById('resultModal')).show();
+                
+            } catch (error) {
+                console.error('获取结果失败:', error);
+                alert('获取结果失败: ' + error.message);
+            }
+        }
+
+        function drawProbabilityChart(probabilities) {
+            const ctx = document.getElementById('probabilityChart');
+            if (!ctx) return;
+            
+            const labels = Object.keys(probabilities);
+            const data = Object.values(probabilities);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '概率',
+                        data: data,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 1
+                        }
+                    }
+                }
+            });
+        }
+
+        async function deleteTask(taskId) {
+            if (!confirm('确认删除此任务吗？')) return;
+            
+            try {
+                const response = await fetch(`/api/task/${taskId}`, {
+                    method: 'DELETE'
+                });
+                
+                if (response.ok) {
+                    loadTasks(); // 重新加载任务列表
+                } else {
+                    throw new Error('删除失败');
+                }
+            } catch (error) {
+                console.error('删除任务失败:', error);
+                alert('删除任务失败: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html> 
