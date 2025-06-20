@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 # 创建FastAPI应用
 app = FastAPI(
     title="动态表情识别平台",
-    description="基于M3D模型的实时动态表情识别平台",
+    description="基于MICACL的实时动态表情识别平台",
     version="1.0.0",
     docs_url="/docs",
     redoc_url="/redoc"

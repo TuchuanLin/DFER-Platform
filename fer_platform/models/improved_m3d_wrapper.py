@@ -434,3 +434,4 @@ class MICACLInferenceWrapper:
             'anger_fear_ratio': anger_fear_ratio,
             'recent_predictions': self.prediction_history[-10:] if len(self.prediction_history) > 10 else self.prediction_history
         }
+ 
