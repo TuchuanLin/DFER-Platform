@@ -46,15 +46,26 @@ DFER-Platform/
 
 观看平台演示视频了解完整功能：
 
-[![MICACL表情识别平台演示](https://img.shields.io/badge/演示视频-观看-red.svg)](demo_video.mp4)
+### 📺 在线观看
+- 🎥 **[Bilibili观看](https://space.bilibili.com)** （推荐，国内访问快）
+- 🎬 **[YouTube观看](https://youtube.com)** （国际用户推荐）
+- 📂 **[GitHub Release下载](https://github.com/TuchuanLin/DFER-Platform/releases)** （高清原版）
 
-演示内容包括：
-- 实时摄像头表情识别
-- 视频上传和批量处理
-- 结果可视化和分析
-- API接口使用示例
+### 📁 本地文件
+- 📹 **项目根目录**: `demo_video.mp4` (165MB，需Git LFS)
 
-> **注意**: 演示视频使用Git LFS存储，首次克隆仓库时请确保安装了Git LFS。
+### 🎯 演示内容
+- ✅ 实时摄像头表情识别
+- ✅ 视频上传和批量处理  
+- ✅ 结果可视化和分析
+- ✅ API接口使用示例
+- ✅ 多种表情类别识别
+- ✅ 准确率和置信度显示
+
+> **提示**: 
+> - 在线观看无需下载，推荐使用Bilibili或YouTube链接
+> - 本地视频文件使用Git LFS存储，克隆时需要Git LFS支持
+> - GitHub Release版本提供压缩版本，文件更小但保持高质量
 
 ## 🚀 快速开始
 
