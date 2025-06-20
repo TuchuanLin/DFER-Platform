@@ -43,12 +43,6 @@ DFER-Platform/
 ```
 
 ## 🎬 演示视频
-
-观看平台演示视频了解完整功能：
-
-### 📺 在线观看
-- 🎥 **[Bilibili观看](https://space.bilibili.com)** （推荐，国内访问快）
-- 🎬 **[YouTube观看](https://youtube.com)** （国际用户推荐）
 - 📂 **[GitHub Release下载](https://github.com/TuchuanLin/DFER-Platform/releases)** （高清原版）
 
 ### 📁 本地文件
